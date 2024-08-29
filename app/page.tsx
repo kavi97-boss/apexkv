@@ -5,7 +5,7 @@ import logoTxt from '@/app/logo-text.png';
 
 function Home() {
 	return (
-		<div className="w-full flex flex-col">
+		<div className="w-full h-screen flex flex-col justify-center items-center">
 			<Image src={logo} alt="ApexKV Logo" width={100} height={100} />
 			<Image src={logoTxt} alt="ApexKV Logo Text" style={{ width: '90vw' }} />
 			<h1 className="text-6xl font-bold text-white">Page on Under Construction</h1>
