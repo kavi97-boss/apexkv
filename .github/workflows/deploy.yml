@@ -27,7 +27,7 @@ jobs:
 
             - name: Serve the Next.js application
               run: |
-                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && screen npx serve@latest out'
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && npx serve@latest out & echo "server started"'
 
             - name: Restart NGINX
               run: sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'sudo systemctl restart nginx'
