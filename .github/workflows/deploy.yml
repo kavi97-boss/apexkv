@@ -13,9 +13,6 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
 
-            - name: Install sshpass
-              run: sudo apt-get install sshpass
-
             - name: Copy files via SCP
               run: |
                   sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/apexkv.com/
@@ -30,7 +27,7 @@ jobs:
 
             - name: Serve the Next.js application
               run: |
-                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && npx serve@latest out'
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && nohup npx serve@latest out > serve.log 2>&1 &'
 
             - name: Restart NGINX
               run: sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'sudo systemctl restart nginx'
