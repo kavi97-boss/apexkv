@@ -20,9 +20,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${inter.className} bg-black w-full h-screen`}>
-				<Header />
-				<SocialSideBar />
-				<div className="flex flex-row w-full justify-center">
+				{/* <Header />
+				<SocialSideBar /> */}
+				<div className="flex flex-row w-full h-screen justify-center items-center">
 					<div className="container">{children}</div>
 				</div>
 			</body>
