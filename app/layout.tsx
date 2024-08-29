@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 
 import './globals.css';
 import Header from './components/Header';
+import SocialSideBar from './components/SocialSideBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +21,10 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${inter.className} bg-black w-full h-screen`}>
 				<Header />
-				{children}
+				<SocialSideBar />
+				<div className="flex flex-row w-full justify-center">
+					<div className="container">{children}</div>
+				</div>
 			</body>
 		</html>
 	);
