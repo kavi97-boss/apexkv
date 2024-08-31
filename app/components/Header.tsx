@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import logoImg from '../logo.png';
-import logoTxt from '../logo-text.png';
-
 const endpoints = [
 	{
 		to: '/about',
@@ -28,9 +25,9 @@ function Header() {
 		<nav className="flex flex-row justify-center py-3">
 			<div className="container flex flex-row justify-between items-center">
 				<Link href={'/'}>
-					<div className="flex flex-row items-center">
-						<Image src={logoImg} alt="ApexKV" width={50} height={50} />
-						<Image src={logoTxt} alt="ApexKV" height={25} />
+					<div className="flex flex-row items-center gap-2">
+						<Image src={'/logo.png'} alt="ApexKV" width={50} height={50} />
+						<Image src={'/logo-text.png'} alt="ApexKV Logo Text" width={150} height={25} />
 					</div>
 				</Link>
 				<ul className="text-white flex flex-row">
