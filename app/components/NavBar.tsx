@@ -44,7 +44,6 @@ function NavBar({
 			const activeElement = containerRef.current.querySelector(`[href='${activeLink}']`);
 			if (activeElement) {
 				const { offsetLeft, offsetWidth, offsetHeight } = activeElement as HTMLElement;
-				console.log(activeElement.getAttribute('href'));
 				setUnderlineProps({ left: offsetLeft, width: offsetWidth, height: offsetHeight });
 			}
 		}
