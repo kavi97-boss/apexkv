@@ -1,10 +1,9 @@
-"className={`${i === 0 || i === 4 ? 'md:col-span-2 md:row-span-2' : ''}`}";
 export const aboutGrid = [
 	{
 		id: 1,
 		title: 'I prioritize client collaboration, fostering open communication ',
 		description: '',
-		className: 'lg:col-span-3 md:col-span-6 md:row-span-4 lg:h-[60vh]',
+		className: 'lg:col-span-3 md:col-span-6 md:row-span-4 lg:h-[60vh] h-[40vh] sm:row-span-4',
 		imgClassName: 'w-full h-full',
 		titleClassName: 'justify-end text-white',
 		img: '/b1.svg',
@@ -14,7 +13,7 @@ export const aboutGrid = [
 		id: 2,
 		title: "I'm very flexible with time zone communications",
 		description: '',
-		className: 'lg:col-span-2 md:col-span-3 md:row-span-2',
+		className: 'lg:col-span-2 md:col-span-3 md:row-span-2 sm:h-[30vh] lg:h-auto xl:h-auto 2xl:h-auto h-[25vh]',
 		imgClassName: '',
 		titleClassName: 'justify-start text-white',
 		img: '',
