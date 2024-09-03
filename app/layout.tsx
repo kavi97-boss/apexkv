@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import './globals.css';
 import { ThemeProvider } from './components/ThemeProvider';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
+const GOOGLE_ANALYTIC_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID;
 
 export const metadata: Metadata = {
 	title: 'ApexKV',
@@ -24,6 +27,7 @@ export default function RootLayout({
 					{children}
 				</ThemeProvider>
 			</body>
+			<GoogleAnalytics gaId={GOOGLE_ANALYTIC_ID!} />
 		</html>
 	);
 }
