@@ -8,6 +8,9 @@ import { BentoGrid, BentoGridItem } from './components/ui/BentoGrid';
 import { aboutGrid } from '@/data/data';
 import HomeSection from './components/HomeSection';
 import AboutSection from './components/AboutSection';
+import ProjectsSection from './components/ProjectsSection';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 
 function Home() {
 	const navItems = [
@@ -35,13 +38,10 @@ function Home() {
 				<NavBar navItems={navItems} />
 				<HomeSection />
 				<AboutSection />
-				<section id="projects" className="relative">
-					<div className="h-[1000px]"></div>
-				</section>
-				<section id="contact" className="relative">
-					<div className="h-[1000px]"></div>
-				</section>
+				<ProjectsSection />
+				<ContactSection />
 			</div>
+			<Footer />
 		</main>
 	);
 }
