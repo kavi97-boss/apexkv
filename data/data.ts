@@ -61,3 +61,53 @@ export const aboutGrid = [
 		spareImg: '',
 	},
 ];
+
+const ICONS = {
+	nextjs: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
+	django: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg',
+	djangorest: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/djangorest/djangorest-original.svg',
+	mysql: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg',
+	neo4j: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/neo4j/neo4j-original-wordmark.svg',
+	mongodb: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg',
+	redis: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg',
+	socketio: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/socketio/socketio-original.svg',
+	nginx: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg',
+	nodejs: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg',
+	rabbitmq: '',
+	docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg',
+	python: '',
+	vscode: '',
+};
+
+export const projects = [
+	{
+		id: 1,
+		title: 'Facebook Clone in Microservice Architecture',
+		label: 'Facebook Clone',
+		des: 'A microservices-based social media platform with real-time chat, post recommendations, and scalable user interactions.',
+		img: '/p1.svg',
+		iconLists1: ['nextjs', 'django', 'mysql', 'neo4j', 'mongodb'],
+		iconLists2: ['redis', 'socketio', 'nginx', 'rabbitmq', 'docker'],
+		link: 'https://github.com/apexkv/facebook-clone',
+	},
+	{
+		id: 2,
+		title: 'Django Project Managing Script (with VSCode Extension)',
+		label: 'Django Manager',
+		des: 'A Python script and vscode extention for automate common Django tasks like creating models, views and serializers and also resetting migrations',
+		img: '/p2.svg',
+		iconLists1: ['python', 'vscode'],
+		iconLists2: [],
+		link: 'https://github.com/apexkv/django-manager',
+	},
+	{
+		id: 3,
+		title: 'Amazon Clone in Microservice Architecture',
+		label: 'Amazon Clone',
+		des: 'Building a scalable e-commerce platform with microservices architecture for seamless shopping and efficient order management.',
+		img: '/p3.svg',
+		iconLists1: ['nextjs', 'django', 'mysql', 'redis', 'rabbitmq'],
+		iconLists2: ['docker', 'nginx'],
+		link: 'https://github.com/apexkv/amazon-clone',
+	},
+];
