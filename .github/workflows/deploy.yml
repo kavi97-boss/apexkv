@@ -21,6 +21,10 @@ jobs:
               run: |
                   sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && npm install'
 
+            - name: Set environment variables
+              run: |
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'echo "NEXT_PUBLIC_GOOGLE_ANALYTIC_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID }}" >> /var/www/apexkv.com/.env'
+
             - name: Build the Next.js application
               run: |
                   sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && npm run build'
