@@ -1,13 +1,25 @@
-import Image from 'next/image';
+'use client';
 import React from 'react';
+
+import NavBar from './components/NavBar';
+import HomeSection from './components/HomeSection';
+import AboutSection from './components/AboutSection';
+import ProjectsSection from './components/ProjectsSection';
+import Footer from './components/Footer';
+import ContactSection from './components/ContactSection';
 
 function Home() {
 	return (
-		<div className="w-full h-screen flex flex-col justify-center items-center">
-			<Image src={'/logo.png'} alt="ApexKV Logo" width={150} height={150} />
-			<Image src={'/logo-text.png'} alt="ApexKV Logo Text" className="w-3/4 sm:w-4/5" style={{ width: '70vw' }} />
-			<h1 className="text-5xl font-bold text-white text-center">Site on Under Construction</h1>
-		</div>
+		<main className="relative bg-black-100 flex justify-center items-center flex-col overflow-x-hidden">
+			<div className="max-w-[1280px]">
+				<NavBar />
+				<HomeSection />
+				<AboutSection />
+				<ProjectsSection />
+				<ContactSection />
+			</div>
+			<Footer />
+		</main>
 	);
 }
 export default Home;
