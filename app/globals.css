@@ -87,3 +87,13 @@
 		background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
 	}
 }
+
+.card-hover {
+	transform-origin: bottom;
+	transform: rotateX(0deg);
+	transition: transform 0.5s ease;
+}
+
+.card-hover:hover {
+	transform: rotateX(20deg);
+}

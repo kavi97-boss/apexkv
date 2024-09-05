@@ -34,7 +34,7 @@ function Home() {
 
 	return (
 		<main className="relative bg-black-100 flex justify-center items-center flex-col overflow-x-hidden">
-			<div className="max-w-[1200px]">
+			<div className="max-w-[1280px]">
 				<NavBar navItems={navItems} />
 				<HomeSection />
 				<AboutSection />
