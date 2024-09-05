@@ -3,21 +3,31 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
-function NavBar({
-	navItems,
-	className,
-}: {
-	navItems: {
-		name?: string;
-		link: string;
-		Icon?: React.ReactNode;
-	}[];
-	className?: string;
-}) {
+function NavBar() {
 	const [activeLink, setActiveLink] = useState('');
 	const [underlineProps, setUnderlineProps] = useState({ left: 0, width: 0, height: 0 });
 	const containerRef = useRef<HTMLDivElement>(null);
+
+	const navItems = [
+		{
+			Icon: <Image src={'/logo.png'} alt="ApexKV" width={40} height={40} className="mx-3" />,
+			link: '#home',
+		},
+		{
+			name: 'About',
+			link: '#about',
+		},
+		{
+			name: 'Projects',
+			link: '#projects',
+		},
+		{
+			name: 'Contact',
+			link: '#contact',
+		},
+	];
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -51,10 +61,9 @@ function NavBar({
 	return (
 		<nav
 			ref={containerRef}
-			className={cn(
-				'flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 px-5 py-1 rounded-full border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-2 mx-auto',
-				className,
-			)}
+			className={
+				'flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 px-5 py-1 rounded-full border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-2 mx-auto'
+			}
 			style={{
 				backdropFilter: 'blur(16px) saturate(180%)',
 				backgroundColor: 'rgba(17, 25, 40, 0.75)',
@@ -70,6 +79,7 @@ function NavBar({
 					style={{ bottom: '-2px' }}
 				/>
 			)}
+
 			{navItems.map((navItem, idx) => (
 				<Link key={`link=${idx}`} href={navItem.link}>
 					<div

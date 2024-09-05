@@ -111,3 +111,22 @@ export const projects = [
 		link: 'https://github.com/apexkv/amazon-clone',
 	},
 ];
+
+export const navItems = [
+	{
+		name: 'home',
+		link: '#name',
+	},
+	{
+		name: 'About',
+		link: '#about',
+	},
+	{
+		name: 'Projects',
+		link: '#projects',
+	},
+	{
+		name: 'Contact',
+		link: '#contact',
+	},
+];
