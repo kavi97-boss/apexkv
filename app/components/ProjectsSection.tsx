@@ -9,7 +9,7 @@ function ProjectsSection() {
 			<div className="flex flex-wrap p-4 mt-10 w-full" style={{ perspective: 1200 }}>
 				{projects.map((item, index) => (
 					<div key={index} className="lg:w-1/3 md:w-1/2 sm:w-full p-2 card-hover">
-						<div className="relative border border-white/[0.1] flex flex-col justify-center rounded-xl overflow-hidden p-4">
+						<div className="relative border border-white/[0.1] bg-black-100 flex flex-col justify-center rounded-xl overflow-hidden p-4">
 							<div className="relative w-full h-full overflow-hidden rounded-xl" style={{ backgroundColor: '#13162D' }}>
 								<img src="/bg.png" alt="bgimg" />
 								<img src={item.img} alt="cover" className="z-10 absolute -bottom-10 right-0 scale-90" />
