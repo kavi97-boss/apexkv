@@ -1,6 +1,7 @@
 import React from 'react';
 import { BentoGrid, BentoGridItem } from './ui/BentoGrid';
 import { aboutGrid } from '@/data/data';
+import Image from 'next/image';
 
 function AboutSection() {
 	return (
@@ -23,7 +24,11 @@ function AboutSection() {
 			</BentoGrid>
 			<div className="row-span-2 col-span-5 px-4 py-8 my-4 relative overflow-hidden rounded-3xl border border-white/[0.1] hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col">
 				<div className="text-white flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-					<img src="/ApexKV-01.png" alt="Description of image" className="max-h-80 float-left sm:float-none sm:order-1 order-2 mx-auto sm:mx-0 mt-4 sm:mt-0" />
+					<img
+						src="/ApexKV-01.png"
+						alt="Kavindu Harshitha, Full Stack Developer, specializing in Python, JavaScript, Django, and React"
+						className="max-h-80 float-left sm:float-none sm:order-1 order-2 mx-auto sm:mx-0 mt-4 sm:mt-0"
+					/>
 
 					<div className="order-1 sm:order-2">
 						<h2 className="text-4xl font-bold tracking-wider mb-10">I'm Kavindu Harshitha</h2>
