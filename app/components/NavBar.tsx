@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import MagicButton from './ui/MagicButton';
 
 function NavBar() {
 	const [activeLink, setActiveLink] = useState('');

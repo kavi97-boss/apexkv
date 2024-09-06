@@ -6,7 +6,6 @@ import HomeSection from './components/HomeSection';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import Footer from './components/Footer';
-import ContactSection from './components/ContactSection';
 
 function Home() {
 	return (
@@ -16,7 +15,6 @@ function Home() {
 				<HomeSection />
 				<AboutSection />
 				<ProjectsSection />
-				<ContactSection />
 			</div>
 			<Footer />
 		</main>
