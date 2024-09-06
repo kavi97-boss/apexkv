@@ -130,3 +130,18 @@ export const navItems = [
 		link: '#contact',
 	},
 ];
+
+export const socialMedia = [
+	{
+		id: 1,
+		img: '/git.svg',
+		link: 'https://github.com/apexkv',
+		label: 'Kavindu Harshitha Github',
+	},
+	{
+		id: 2,
+		img: '/link.svg',
+		link: 'https://www.linkedin.com/in/kavindu-harshitha/',
+		label: 'Kavindu Harshitha LinkedIn',
+	},
+];

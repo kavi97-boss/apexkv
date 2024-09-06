@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 function ProjectsSection() {
 	return (
-		<section id="projects" className="relative px-4 pt-36">
+		<section id="projects" className="relative px-4 pt-36 min-h-screen">
 			<h1 className="text-white text-4xl mb-10 font-bold">Recent Projects</h1>
 			<div className="flex flex-wrap p-4 mt-10 w-full" style={{ perspective: 1200 }}>
 				{projects.map((item, index) => (
