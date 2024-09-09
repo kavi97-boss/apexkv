@@ -1,76 +1,12 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, Variants } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 function NavBar() {
-	const [activeLink, setActiveLink] = useState('');
-	const [underlineProps, setUnderlineProps] = useState({ left: 0, width: 0, height: 0 });
-	const containerRef = useRef<HTMLDivElement>(null);
 	const [isNavOpen, setIsNavOpen] = useState(false);
 
-	const navItems = [
-		{
-			name: 'About',
-			link: '#about',
-		},
-		{
-			name: 'Projects',
-			link: '#projects',
-		},
-		{
-			name: 'Contact',
-			link: '#contact',
-		},
-	];
-
 	const toggleNav = () => setIsNavOpen(!isNavOpen);
-
-	const navVariants: Variants = {
-		open: {
-			height: 'auto',
-			opacity: 1,
-			transition: { duration: 0.4, ease: 'easeInOut' },
-		},
-		closed: {
-			height: 0,
-			opacity: 0,
-			transition: { duration: 0.4, ease: 'easeInOut' },
-		},
-	};
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScroll = window.scrollY;
-			let currentLink = '';
-
-			navItems.forEach((item) => {
-				if (item.link !== '/Kavindu-Harshitha-CV.pdf') {
-					const section: any = document.querySelector(item.link);
-					if (section && section.offsetTop <= currentScroll + 10) {
-						currentLink = item.link;
-					}
-				}
-			});
-
-			setActiveLink(currentLink);
-		};
-
-		window.addEventListener('scroll', handleScroll);
-		handleScroll();
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, [navItems]);
-
-	useEffect(() => {
-		if (activeLink && containerRef.current) {
-			const activeElement = containerRef.current.querySelector(`[href='${activeLink}']`);
-			if (activeElement) {
-				const { offsetLeft, offsetWidth, offsetHeight } = activeElement as HTMLElement;
-				setUnderlineProps({ left: offsetLeft, width: offsetWidth, height: offsetHeight });
-			}
-		}
-	}, [activeLink]);
 
 	return (
 		<header className="fixed z-[5000] top-2 left-1 right-1 flex flex-row justify-center">
