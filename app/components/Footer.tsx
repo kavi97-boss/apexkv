@@ -19,7 +19,7 @@ const Footer = () => {
 					Copyright © 2024 Kavindu Harshitha
 				</p>
 				<div className="fixed right-2 top-1/2 -translate-y-1/2">
-					<div className="flex flex-col items-center md:gap-3 gap-6">
+					<div className="flex flex-col items-center gap-2">
 						{socialMedia.map((info) => (
 							<a
 								key={info.id}

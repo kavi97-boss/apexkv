@@ -1,21 +1,16 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import MagicButton from './ui/MagicButton';
 
 function NavBar() {
 	const [activeLink, setActiveLink] = useState('');
 	const [underlineProps, setUnderlineProps] = useState({ left: 0, width: 0, height: 0 });
 	const containerRef = useRef<HTMLDivElement>(null);
+	const [isNavOpen, setIsNavOpen] = useState(false);
 
 	const navItems = [
-		{
-			Icon: <Image src={'/logo.png'} alt="ApexKV" width={40} height={40} className="mx-3" />,
-			link: '#home',
-		},
 		{
 			name: 'About',
 			link: '#about',
@@ -30,15 +25,32 @@ function NavBar() {
 		},
 	];
 
+	const toggleNav = () => setIsNavOpen(!isNavOpen);
+
+	const navVariants: Variants = {
+		open: {
+			height: 'auto',
+			opacity: 1,
+			transition: { duration: 0.4, ease: 'easeInOut' },
+		},
+		closed: {
+			height: 0,
+			opacity: 0,
+			transition: { duration: 0.4, ease: 'easeInOut' },
+		},
+	};
+
 	useEffect(() => {
 		const handleScroll = () => {
 			const currentScroll = window.scrollY;
 			let currentLink = '';
 
 			navItems.forEach((item) => {
-				const section: any = document.querySelector(item.link);
-				if (section && section.offsetTop <= currentScroll + 10) {
-					currentLink = item.link;
+				if (item.link !== '/Kavindu-Harshitha-CV.pdf') {
+					const section: any = document.querySelector(item.link);
+					if (section && section.offsetTop <= currentScroll + 10) {
+						currentLink = item.link;
+					}
 				}
 			});
 
@@ -59,37 +71,75 @@ function NavBar() {
 			}
 		}
 	}, [activeLink]);
-	return (
-		<nav
-			ref={containerRef}
-			className={
-				'flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 px-5 py-1 rounded-full border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-2 mx-auto'
-			}
-			style={{
-				backdropFilter: 'blur(16px) saturate(180%)',
-				backgroundColor: 'rgba(17, 25, 40, 0.75)',
-				border: '1px solid rgba(255, 255, 255, 0.125)',
-			}}
-		>
-			{activeLink !== navItems[0].link && (
-				<motion.div
-					className="absolute bottom-0 top-1/2 border border-neutral-600 rounded-full -translate-y-1/2"
-					initial={false}
-					animate={{ left: underlineProps.left, width: underlineProps.width, height: underlineProps.height }}
-					transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-					style={{ bottom: '-2px' }}
-				/>
-			)}
 
-			{navItems.map((navItem, idx) => (
-				<Link key={`link=${idx}`} href={navItem.link}>
-					<div className={cn('relative text-neutral-50 items-center flex space-x-1 hover:text-neutral-300 border-black/.1 rounded-full p-2')}>
-						{navItem.Icon && <span className="block">{navItem.Icon}</span>}
-						{navItem.name && <span className="text-sm cursor-pointer p-2">{navItem.name}</span>}
-					</div>
-				</Link>
-			))}
-		</nav>
+	return (
+		<header className="fixed z-[5000] top-2 left-1 right-1 flex flex-row justify-center">
+			<div
+				className="px-10 shadow-lg rounded-[5vh] md:max-w-fit w-full"
+				style={{
+					backdropFilter: 'blur(16px) saturate(180%)',
+					backgroundColor: 'rgba(17, 25, 40, 0.75)',
+					border: '1px solid rgba(255, 255, 255, 0.125)',
+				}}
+			>
+				<div className="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
+					<a className="flex items-center text-2xl font-black" href="#home">
+						<div className="flex flex-row items-center !pr-4">
+							<Image src={'/logo.png'} alt="ApexKV" width={40} height={40} className="mx-3" />
+							<img src={'/logo-text.png'} alt="ApexKV" className="mx-3 !w-48" />
+						</div>
+					</a>
+					<input className="peer hidden" type="checkbox" id="navbar-open" checked={isNavOpen} onChange={toggleNav} />
+					<label className="absolute top-5 right-0 mt-1 cursor-pointer text-xl md:hidden" onClick={toggleNav}>
+						{/* Burger/Cross Icon */}
+						<div className="flex flex-col">
+							<motion.div className="w-10 h-[4px] bg-neutral-400" animate={isNavOpen ? { rotate: 45, y: 9 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3 }} />
+							<motion.div className="w-10 h-[4px] bg-neutral-400 my-[5px]" animate={isNavOpen ? { opacity: 0 } : { opacity: 1 }} transition={{ duration: 0.3 }} />
+							<motion.div className="w-10 h-[4px] bg-neutral-400" animate={isNavOpen ? { rotate: -45, y: -9 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3 }} />
+						</div>
+					</label>
+					<motion.nav
+						aria-label="ApexKV Navigation"
+						className={`pl-2 sm:pl-0 ${isNavOpen ? 'py-6' : 'py-0'} sm:block sm:py-0 overflow-hidden`}
+						initial={isNavOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+						animate={isNavOpen || window.innerWidth >= 768 ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+						transition={{ duration: 0.4, ease: 'easeInOut' }}
+						style={{ overflow: isNavOpen || window.innerWidth >= 768 ? 'visible' : 'hidden' }}
+					>
+						<ul className="flex flex-col items-center gap-y-4 sm:flex-row sm:gap-x-8 md:flex-row md:gap-x-8">
+							<li className="">
+								<a className={`text-gray-600 hover:text-gray-200`} href="#about">
+									About
+								</a>
+							</li>
+							<li className="">
+								<a className={`text-gray-600 hover:text-gray-200`} href="#projects">
+									Projects
+								</a>
+							</li>
+							<li className="">
+								<a className={`text-gray-600 hover:text-gray-200`} href="#contact">
+									Contact
+								</a>
+							</li>
+							<li className="mt-2 sm:mt-0">
+								<a href="/Kavindu-Harshitha-CV.pdf" download>
+									<button className={`relative inline-flex w-full overflow-hidden rounded-lg p-[1px] focus:outline-none`}>
+										<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+										<span
+											className={`h-full w-full cursor-pointer items-center justify-center rounded-lg
+             bg-slate-950 py-2 px-4 text-sm font-medium text-white backdrop-blur-3xl`}
+										>
+											My Resume
+										</span>
+									</button>
+								</a>
+							</li>
+						</ul>
+					</motion.nav>
+				</div>
+			</div>
+		</header>
 	);
 }
 
