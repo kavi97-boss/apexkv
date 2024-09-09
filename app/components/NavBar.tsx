@@ -17,7 +17,7 @@ function NavBar() {
 	return (
 		<header className="fixed z-[5000] top-4 left-1 right-1 flex flex-row justify-center">
 			<div
-				className="px-10 shadow-lg rounded-[5vh] md:max-w-fit w-full"
+				className="px-6 shadow-lg rounded-[5vh] md:max-w-fit w-full"
 				style={{
 					backdropFilter: 'blur(16px) saturate(180%)',
 					backgroundColor: 'rgba(17, 25, 40, 0.75)',
@@ -27,8 +27,8 @@ function NavBar() {
 				<div className="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
 					<a className="flex items-center text-2xl font-black" href="#home">
 						<div className="flex flex-row items-center !pr-4">
-							<Image src={'/logo.png'} alt="ApexKV" width={40} height={40} className="mx-3" />
-							<img src={'/logo-text.png'} alt="ApexKV" className="mx-3 !w-48" />
+							<Image src={'/logo.png'} alt="ApexKV" width={40} height={40} className="mx-1" />
+							<img src={'/logo-text.png'} alt="ApexKV" className="mx-2 max-h-7" />
 						</div>
 					</a>
 					<input className="peer hidden" type="checkbox" id="navbar-open" checked={isNavOpen} onChange={toggleNav} />
