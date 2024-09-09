@@ -83,11 +83,7 @@ function NavBar() {
 
 			{navItems.map((navItem, idx) => (
 				<Link key={`link=${idx}`} href={navItem.link}>
-					<div
-						className={cn(
-							'relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500 border-black/.1 rounded-full p-2',
-						)}
-					>
+					<div className={cn('relative text-neutral-50 items-center flex space-x-1 hover:text-neutral-300 border-black/.1 rounded-full p-2')}>
 						{navItem.Icon && <span className="block">{navItem.Icon}</span>}
 						{navItem.name && <span className="text-sm cursor-pointer p-2">{navItem.name}</span>}
 					</div>

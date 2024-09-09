@@ -22,7 +22,7 @@ function AboutSection() {
 					/>
 				))}
 			</BentoGrid>
-			<div className="row-span-2 col-span-5 px-4 py-8 my-4 relative overflow-hidden rounded-3xl border border-white/[0.1] hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col">
+			<div className="row-span-2 col-span-5 px-4 py-8 my-4 relative overflow-hidden rounded-3xl border border-white/[0.1] hover:shadow-xl transition duration-200 shadow-input justify-between flex flex-col">
 				<div className="text-white flex flex-col sm:flex-row sm:items-center sm:space-x-4">
 					<img
 						src="/ApexKV-01.png"
