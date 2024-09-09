@@ -1,10 +1,16 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 function NavBar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
+	const [isClient, setIsClient] = useState(false);
+
+	// Set isClient to true once the component is mounted on the client side
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
 	const toggleNav = () => setIsNavOpen(!isNavOpen);
 
@@ -34,45 +40,47 @@ function NavBar() {
 							<motion.div className="w-10 h-[4px] bg-neutral-400" animate={isNavOpen ? { rotate: -45, y: -9 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3 }} />
 						</div>
 					</label>
-					<motion.nav
-						aria-label="ApexKV Navigation"
-						className={`pl-2 sm:pl-0 ${isNavOpen ? 'py-6' : 'py-0'} sm:block sm:py-0 overflow-hidden`}
-						initial={isNavOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-						animate={isNavOpen || window.innerWidth >= 768 ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-						transition={{ duration: 0.4, ease: 'easeInOut' }}
-						style={{ overflow: isNavOpen || window.innerWidth >= 768 ? 'visible' : 'hidden' }}
-					>
-						<ul className="flex flex-col items-center gap-y-4 sm:flex-row sm:gap-x-8 md:flex-row md:gap-x-8">
-							<li className="">
-								<a className={`text-gray-600 hover:text-gray-200`} href="#about">
-									About
-								</a>
-							</li>
-							<li className="">
-								<a className={`text-gray-600 hover:text-gray-200`} href="#projects">
-									Projects
-								</a>
-							</li>
-							<li className="">
-								<a className={`text-gray-600 hover:text-gray-200`} href="#contact">
-									Contact
-								</a>
-							</li>
-							<li className="mt-2 sm:mt-0">
-								<a href="/Kavindu-Harshitha-CV.pdf" download>
-									<button className={`relative inline-flex w-full overflow-hidden rounded-lg p-[1px] focus:outline-none`}>
-										<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-										<span
-											className={`h-full w-full cursor-pointer items-center justify-center rounded-lg
-             bg-slate-950 py-2 px-4 text-sm font-medium text-white backdrop-blur-3xl`}
-										>
-											My Resume
-										</span>
-									</button>
-								</a>
-							</li>
-						</ul>
-					</motion.nav>
+					{isClient && (
+						<motion.nav
+							aria-label="ApexKV Navigation"
+							className={`pl-2 sm:pl-0 ${isNavOpen ? 'py-6' : 'py-0'} sm:block sm:py-0 overflow-hidden`}
+							initial={isNavOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+							animate={isNavOpen || window.innerWidth >= 768 ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+							transition={{ duration: 0.4, ease: 'easeInOut' }}
+							style={{ overflow: isNavOpen || window.innerWidth >= 768 ? 'visible' : 'hidden' }}
+						>
+							<ul className="flex flex-col items-center gap-y-4 sm:flex-row sm:gap-x-8 md:flex-row md:gap-x-8">
+								<li className="">
+									<a className={`text-gray-600 hover:text-gray-200`} href="#about">
+										About
+									</a>
+								</li>
+								<li className="">
+									<a className={`text-gray-600 hover:text-gray-200`} href="#projects">
+										Projects
+									</a>
+								</li>
+								<li className="">
+									<a className={`text-gray-600 hover:text-gray-200`} href="#contact">
+										Contact
+									</a>
+								</li>
+								<li className="mt-2 sm:mt-0">
+									<a href="/Kavindu-Harshitha-CV.pdf" download>
+										<button className={`relative inline-flex w-full overflow-hidden rounded-lg p-[1px] focus:outline-none`}>
+											<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+											<span
+												className={`h-full w-full cursor-pointer items-center justify-center rounded-lg
+												 bg-slate-950 py-2 px-4 text-sm font-medium text-white backdrop-blur-3xl`}
+											>
+												My Resume
+											</span>
+										</button>
+									</a>
+								</li>
+							</ul>
+						</motion.nav>
+					)}
 				</div>
 			</div>
 		</header>
