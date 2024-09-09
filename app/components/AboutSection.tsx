@@ -24,15 +24,15 @@ function AboutSection() {
 			</BentoGrid>
 			<div className="row-span-2 col-span-5 px-4 py-8 my-4 relative overflow-hidden rounded-3xl border border-white/[0.1] hover:shadow-xl transition duration-200 shadow-input justify-between flex flex-col">
 				<div className="text-white flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-					<img
+					{/* <img
 						src="/ApexKV-01.png"
 						alt="Kavindu Harshitha, Full Stack Developer, specializing in Python, JavaScript, Django, and React"
 						className="max-h-80 float-left sm:float-none sm:order-1 order-2 mx-auto sm:mx-0 mt-4 sm:mt-0"
-					/>
+					/> */}
 
 					<div className="order-1 sm:order-2">
-						<h2 className="text-4xl font-bold tracking-wider mb-10">I'm Kavindu Harshitha</h2>
-						<p className="text-gray-500 mt-2 indent-20">
+						<h2 className="text-4xl font-bold tracking-wider mb-10 text-center">Hello! I'm Kavindu Harshitha</h2>
+						<p className="text-gray-400 mt-2 text-center rounded-full">
 							Welcome to ApexKV.com. I'm a passionate Full Stack Developer with five years of experience in creating scalable, high-performance web applications. My
 							journey in tech began as a self-taught programmer, driven by curiosity and a love for solving complex problems. Over the years, I've honed my skills in
 							Python and JavaScript, specializing in frameworks like React and Django. My freelance work has given me the opportunity to collaborate with clients from
