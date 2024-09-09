@@ -9,7 +9,7 @@ function NavBar() {
 	const toggleNav = () => setIsNavOpen(!isNavOpen);
 
 	return (
-		<header className="fixed z-[5000] top-2 left-1 right-1 flex flex-row justify-center">
+		<header className="fixed z-[5000] top-4 left-1 right-1 flex flex-row justify-center">
 			<div
 				className="px-10 shadow-lg rounded-[5vh] md:max-w-fit w-full"
 				style={{
