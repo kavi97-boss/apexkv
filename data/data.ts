@@ -102,13 +102,13 @@ export const projects = [
 	},
 	{
 		id: 3,
-		title: 'Amazon Clone in Microservice Architecture',
-		label: 'Amazon Clone',
-		des: 'Building a scalable e-commerce platform with microservices architecture for seamless shopping and efficient order management.',
+		title: 'E-Commerce backend in Microservice Architecture',
+		label: 'Market Micro',
+		des: 'Market-Micro is a scalable e-commerce backend built with microservices for product management, order processing, and search using Elasticsearch.',
 		img: '/amazon-clone.png',
-		iconLists1: ['nextjs', 'django', 'mysql', 'redis', 'rabbitmq'],
+		iconLists1: ['django', 'mysql', 'redis', 'rabbitmq'],
 		iconLists2: ['docker', 'nginx'],
-		link: 'https://github.com/apexkv/amazon-clone',
+		link: 'https://github.com/apexkv/market-micro',
 	},
 ];
 
