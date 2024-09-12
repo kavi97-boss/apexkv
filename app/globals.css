@@ -97,3 +97,107 @@
 .card-hover:hover {
 	transform: rotateX(20deg);
 }
+
+.nav-bar {
+	min-height: 70px;
+	backdrop-filter: blur(16px) saturate(180%);
+	background-color: rgba(17, 25, 40, 0.75);
+	border: 1px solid rgba(255, 255, 255, 0.125);
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
+	border-radius: 35px;
+	max-width: fit-content;
+	position: relative;
+}
+
+.nav-items {
+	align-items: center;
+	transform-origin: top;
+	max-height: 0;
+	transition: max-height 1s ease-in-out;
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;
+}
+
+.nav-item {
+	padding: 14px 16px;
+}
+
+.nav-item:hover {
+	color: rgb(176, 176, 176);
+}
+
+.burger {
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	top: 7px;
+	right: 20px;
+	padding: 10px;
+}
+
+.bar {
+	width: 40px;
+	height: 3px;
+	background-color: rgb(176, 176, 176);
+	margin: 6px 0;
+	transition: transform 0.5s ease-in-out;
+	transform-origin: center center;
+}
+
+.bar1 {
+	transform: rotate(0deg) translate(0, 0);
+}
+
+.bar2 {
+	transform: scaleX(1);
+}
+
+.bar3 {
+	transform: rotate(0deg) translate(0, 0);
+}
+
+.burger.active .bar1 {
+	transform: rotate(45deg) translate(6px, 6px);
+}
+
+.burger.active .bar2 {
+	transform: scaleX(0);
+}
+
+.burger.active .bar3 {
+	transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.show-nav-items {
+	max-height: 500px;
+}
+
+.hide-nav-items {
+	max-height: 0;
+}
+
+@media (max-width: 768px) {
+	.burger {
+		display: block;
+	}
+	.nav-bar {
+		min-width: 100%;
+		padding-top: 15px;
+		flex-direction: column;
+	}
+	.nav-items {
+		width: 100%;
+		align-items: center;
+		flex-direction: column;
+		height: auto;
+	}
+	.nav-item {
+		width: 100%;
+		text-align: center;
+		padding: 20px;
+	}
+}
