@@ -1,88 +1,111 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+
+const navItems = [
+	{
+		name: 'About',
+		link: '#about',
+	},
+	{
+		name: 'Projects',
+		link: '#projects',
+	},
+	{
+		name: 'Contact',
+		link: '#contact',
+	},
+];
 
 function NavBar() {
-	const [isNavOpen, setIsNavOpen] = useState(false);
-	const [isClient, setIsClient] = useState(false);
+	const [activeLink, setActiveLink] = useState('');
+	const [underlineProps, setUnderlineProps] = useState({ left: 0, width: 0, height: 0 });
+	const containerRef = useRef<HTMLDivElement>(null);
+	const logoRef = useRef<HTMLDivElement>(null);
+	const [showNavItems, setShowNavItems] = useState<boolean>(false);
 
-	// Set isClient to true once the component is mounted on the client side
+	const toggleNavBar = () => {
+		setShowNavItems((prevState) => !prevState);
+	};
+
 	useEffect(() => {
-		setIsClient(true);
+		const handleScroll = () => {
+			const currentScroll = window.scrollY;
+			let currentLink = '';
+			navItems.forEach((item) => {
+				const section: any = document.querySelector(item.link);
+				if (section && section.offsetTop <= currentScroll + 10) {
+					currentLink = item.link;
+				}
+			});
+			setActiveLink(currentLink);
+		};
+		window.addEventListener('scroll', handleScroll);
+		handleScroll();
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, [navItems]);
+	useEffect(() => {
+		console.log(activeLink);
+		if (activeLink && containerRef.current) {
+			const activeElement = containerRef.current.querySelector(`[href='${activeLink}']`);
+			if (activeElement) {
+				const { offsetLeft, offsetWidth, offsetHeight } = activeElement as HTMLElement;
+				const logoWidth = logoRef ? (logoRef.current ? logoRef.current.offsetWidth : 0) : 0;
+				setUnderlineProps({ left: offsetLeft + logoWidth + 48, width: offsetWidth, height: offsetHeight });
+			}
+		}
+	}, [activeLink]);
+
+	useEffect(() => {
+		if (window.innerWidth > 768) {
+			setShowNavItems(true);
+		}
 	}, []);
 
-	const toggleNav = () => setIsNavOpen(!isNavOpen);
-
 	return (
-		<header className="fixed z-[5000] top-4 left-1 right-1 flex flex-row justify-center">
-			<div
-				className="px-6 shadow-lg rounded-[5vh] md:max-w-fit w-full"
-				style={{
-					backdropFilter: 'blur(16px) saturate(180%)',
-					backgroundColor: 'rgba(17, 25, 40, 0.75)',
-					border: '1px solid rgba(255, 255, 255, 0.125)',
-				}}
-			>
-				<div className="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
-					<a className="flex items-center text-2xl font-black" href="#home">
-						<div className="flex flex-row items-center !pr-4">
-							<Image src={'/logo.png'} alt="ApexKV" width={40} height={40} className="mx-1" />
-							<img src={'/logo-text.png'} alt="ApexKV" className="mx-2 max-h-7" />
-						</div>
-					</a>
-					<input className="peer hidden" type="checkbox" id="navbar-open" checked={isNavOpen} onChange={toggleNav} />
-					<label className="absolute top-5 right-0 mt-1 cursor-pointer text-xl md:hidden" onClick={toggleNav}>
-						{/* Burger/Cross Icon */}
-						<div className="flex flex-col">
-							<motion.div className="w-10 h-[4px] bg-neutral-400" animate={isNavOpen ? { rotate: 45, y: 9 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3 }} />
-							<motion.div className="w-10 h-[4px] bg-neutral-400 my-[5px]" animate={isNavOpen ? { opacity: 0 } : { opacity: 1 }} transition={{ duration: 0.3 }} />
-							<motion.div className="w-10 h-[4px] bg-neutral-400" animate={isNavOpen ? { rotate: -45, y: -9 } : { rotate: 0, y: 0 }} transition={{ duration: 0.3 }} />
-						</div>
-					</label>
-					{isClient && (
-						<motion.nav
-							aria-label="ApexKV Navigation"
-							className={`pl-2 sm:pl-0 ${isNavOpen ? 'py-6' : 'py-0'} sm:block sm:py-0 overflow-hidden`}
-							initial={isNavOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-							animate={isNavOpen || window.innerWidth >= 768 ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-							transition={{ duration: 0.4, ease: 'easeInOut' }}
-							style={{ overflow: isNavOpen || window.innerWidth >= 768 ? 'visible' : 'hidden' }}
-						>
-							<ul className="flex flex-col items-center gap-y-4 sm:flex-row sm:gap-x-8 md:flex-row md:gap-x-8">
-								<li className="">
-									<a className={`text-gray-600 hover:text-gray-200`} href="#about">
-										About
-									</a>
-								</li>
-								<li className="">
-									<a className={`text-gray-600 hover:text-gray-200`} href="#projects">
-										Projects
-									</a>
-								</li>
-								<li className="">
-									<a className={`text-gray-600 hover:text-gray-200`} href="#contact">
-										Contact
-									</a>
-								</li>
-								<li className="mt-2 sm:mt-0">
-									<a href="/Kavindu-Harshitha-CV.pdf" download>
-										<button className={`relative inline-flex w-full overflow-hidden rounded-lg p-[1px] focus:outline-none`}>
-											<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-											<span
-												className={`h-full w-full cursor-pointer items-center justify-center rounded-lg
-												 bg-slate-950 py-2 px-4 text-sm font-medium text-white backdrop-blur-3xl`}
-											>
-												My Resume
-											</span>
-										</button>
-									</a>
-								</li>
-							</ul>
-						</motion.nav>
+		<header className="fixed top-2 left-0 right-0 px-2 flex flex-row justify-center text-gray-600 z-[5000]">
+			<nav className="nav-bar px-8 py-2 relative" ref={containerRef}>
+				<a href="#home">
+					<div className="flex items-center" ref={logoRef}>
+						<img src="/logo.png" className="w-10 h-10" />
+						<img src="/logo-text.png" className="max-h-7" />
+					</div>
+				</a>
+
+				<div className="hidden md:block">
+					{activeLink.length > 0 ? (
+						<motion.div
+							className="absolute bottom-0 top-1/2 border border-neutral-600 rounded-full -translate-y-1/2"
+							initial={false}
+							animate={{ left: underlineProps.left, width: underlineProps.width, height: underlineProps.height }}
+							transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+							style={{ bottom: '-2px' }}
+						/>
+					) : (
+						''
 					)}
 				</div>
-			</div>
+				<ul className={`nav-items md:ml-4 ${showNavItems ? 'show-nav-items' : 'hide-nav-items'}`}>
+					{navItems.map((navItem, idx) => (
+						<a href={navItem.link} key={idx} className={`nav-item ${activeLink === navItem.link ? 'text-gray-200' : 'text-gray-600'}`}>
+							<li>{navItem.name}</li>
+						</a>
+					))}
+					<a href="/Kavindu-Harshitha-CV.pdf" download className="md:ml-4">
+						<button className={`relative inline-flex w-36 overflow-hidden rounded-lg p-[1px] focus:outline-none`}>
+							<span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+							<span className="h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 py-2 px-4 text-sm font-medium text-white backdrop-blur-3xl">
+								My Resume
+							</span>
+						</button>
+					</a>
+				</ul>
+				<div className={`burger ${showNavItems ? 'active' : ''}`} onClick={toggleNavBar}>
+					<div className="bar bar1" />
+					<div className="bar bar2" />
+					<div className="bar bar3" />
+				</div>
+			</nav>
 		</header>
 	);
 }
