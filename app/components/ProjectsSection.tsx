@@ -53,7 +53,7 @@ function ProjectsSection() {
 								))}
 							</div>
 							<div className="wi-full flex flex-row justify-center">
-								<a href={item.link} className="w-fit py-2 px-4 mt-4 rounded-full border border-[#CBACF9] text-[#CBACF9] flex items-center">
+								<a href={item.link} target="_blank" className="w-fit py-2 px-4 mt-4 rounded-full border border-[#CBACF9] text-[#CBACF9] flex items-center">
 									Check About Project
 									<FaLocationArrow className="ms-3" color="#CBACF9" />
 								</a>
