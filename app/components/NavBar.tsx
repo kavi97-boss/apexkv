@@ -51,7 +51,7 @@ function NavBar() {
 			if (activeElement) {
 				const { offsetLeft, offsetWidth, offsetHeight } = activeElement as HTMLElement;
 				const logoWidth = logoRef ? (logoRef.current ? logoRef.current.offsetWidth : 0) : 0;
-				setUnderlineProps({ left: offsetLeft + logoWidth + 48, width: offsetWidth, height: offsetHeight });
+				setUnderlineProps({ left: offsetLeft, width: offsetWidth, height: offsetHeight });
 			}
 		}
 	}, [activeLink]);
