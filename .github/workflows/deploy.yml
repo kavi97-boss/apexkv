@@ -1,0 +1,37 @@
+name: Deploy to Production
+
+on:
+    push:
+        branches:
+            - production
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Copy files via SCP
+              run: |
+                  sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/apexkv.com/
+
+            - name: Install dependencies
+              run: |
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && npm install'
+
+            - name: Set environment variables
+              run: |
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'echo "NEXT_PUBLIC_GOOGLE_ANALYTIC_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTIC_ID }}" >> /var/www/apexkv.com/.env'
+
+            - name: Build the Next.js application
+              run: |
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && npm run build'
+
+            - name: Serve the Next.js application
+              run: |
+                  sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'cd /var/www/apexkv.com && pm2 restart apexkv'
+
+            - name: Restart NGINX
+              run: sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} 'sudo systemctl restart nginx'
