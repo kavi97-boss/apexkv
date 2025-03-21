@@ -29,7 +29,7 @@ function HomeSection() {
 					<div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
 						<TextGenerateEffect duration={1.5} words="Transforming Complex Ideas into Interactive Digital Experiences" />
 						<p className="text-white text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-							Hi! I&apos;m Kavindu, a Full-Stack Developer based in Adelaide, Australia.
+							Hi! I'm Kavindu, a Full-Stack Developer crafting high-performance web solutions with clean code and innovation🚀
 						</p>
 
 						<a href="#about">
